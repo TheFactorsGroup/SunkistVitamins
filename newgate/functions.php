@@ -9,6 +9,26 @@
  * 
  */
 
+// Custom Login Page
+function my_loginlogo() {
+  echo '<style type="text/css">
+	body, html{background:#fff!important;}
+	h1 a {
+		background-image: url(/wp-content/uploads/2015/06/logo-sunkist-vitamins.jpg) !important;
+		background-size: 250px!important;
+		width:250px!important;
+		height: 100px!important;
+		background-size: 213px 97px;
+		}
+	.login form{
+		background:#ff5a24;
+		border-radius:10px;
+	}
+	.login label{ color:#fff; 
+	 }
+  </style>';
+}
+add_action('login_head', 'my_loginlogo');
 
 // Current Theme Constants
 define('CMSMS_SHORTNAME', 'newgate');
