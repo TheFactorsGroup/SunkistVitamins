@@ -9,6 +9,15 @@
  * 
  */
 
+// Fix Mandrill Issue whereas Mandrill Removes reset email link for forgootten password emails
+function forgotMyPasswordEmails($nl2br, $message) {
+    if ( in_array( 'wp_retrieve_password', $message['tags']['automatic'] ) ) {
+        $nl2br = true;
+    }
+    return $nl2br;
+}
+add_filter( 'mandrill_nl2br', 'forgotMyPasswordEmails', 10, 2 );
+
 // Custom Login Page
 function my_loginlogo() {
   echo '<style type="text/css">
