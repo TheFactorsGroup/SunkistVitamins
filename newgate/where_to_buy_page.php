@@ -63,9 +63,15 @@ if (have_posts()) : the_post();
 	
 	cmsms_content_composer(get_the_ID());
 endif;
+?>
 
-echo '<div id="map-canvas"></div>'; 
+<!-- Begin Easy Locator Store Locator Service //-->
+<script type="text/javascript" src="https://www.easylocator.net/api/embedIframe/skv-<?= ICL_LANGUAGE_CODE ?>-responsive/controller/search/function/map3/template/template3_1"></script><div id="EasyLocatorWrapper"></div>
+<!-- End Easy Locator Store Locator Service //-->
 
+<br><br>
+
+<?php
 echo '<h2>'.get_field( 'retailers_title' ).'</h2>'; 
 // Logo block section 
 
@@ -112,81 +118,15 @@ if ($cmsms_layout == 'r_sidebar') {
 	'<!-- _________________________ Finish Sidebar _________________________ -->' . "\n";
 }
 ?>
-<?php 
-	if(ICL_LANGUAGE_CODE == 'fr-ca'){
-		$map_url = get_stylesheet_directory_uri().'/maps-fr/'; 
-	}else{
-		$map_url = get_stylesheet_directory_uri().'/maps/'; 
-	}
-?>
-<script>
 
-jQuery(document).ready(function($){
-	map();
-});
 
-function map(){
 
-	mapSize();
-	
-	jQuery(window).resize(function() {
-		mapSize();
-	});
-	
-	function mapSize(){
-		var window = jQuery(window).width();
-		var container = jQuery('.entry').width()
-		console.log(container);
-		if (container >= 848){
-			loadMap('map-900');
-		} else if (container > 800 && container <= 847){ 
-			loadMap('map-800');
-		} else if (container > 623 && container <= 819){ 
-			loadMap('map-600');
-		} else if (container > 460 && container <= 622){ 
-			loadMap('map-480');
-		} else {
-			loadMap('map-320');
-		}
-	}
-	
-	function loadMap(size){
-		var map_url = "<?php echo $map_url; ?>";
-		var map_query = "?<?php echo $_SERVER['QUERY_STRING']; ?>";
-		if (size=='map-900' && !jQuery("#map-canvas").hasClass('map-900')){
-			jQuery("#map-canvas").load( map_url+"map-900.php"+map_query);
-			jQuery("#map-canvas").removeClass();
-			jQuery("#map-canvas").addClass('map-900');
-		}
-		
-		if (size=='map-800' && !jQuery("#map-canvas").hasClass('map-800')){
-			jQuery("#map-canvas").load( map_url+"map-800.php"+map_query);
-			jQuery("#map-canvas").removeClass();
-			jQuery("#map-canvas").addClass('map-800');
-		}
 
-		if (size=='map-600' && !jQuery("#map-canvas").hasClass('map-600')){
-			jQuery("#map-canvas").load( map_url+"map-600.php"+map_query);
-			jQuery("#map-canvas").removeClass();
-			jQuery("#map-canvas").addClass('map-600');
-		}
 
-		if (size=='map-480' && !jQuery("#map-canvas").hasClass('map-480')){
-			jQuery("#map-canvas").load( map_url+"map-480.php"+map_query);
-			jQuery("#map-canvas").removeClass();
-			jQuery("#map-canvas").addClass('map-480');
-		}
+    	<!-- Begin Easy Locator Store Locator Service //-->
+		<!--<script type="text/javascript" src="//www.easylocator.net/api/embedIframe/skv-<?= ICL_LANGUAGE_CODE ?>-responsive/controller/search/function/map3/template/template3_1"></script><div id="EasyLocatorWrapper"></div>-->
+		<!-- End Easy Locator Store Locator Service //-->
 
-				
-		if (size=='map-320' && !jQuery("#map-canvas").hasClass('map-320')){
-			jQuery("#map-canvas").load( map_url+"map-320.php"+map_query);
-			jQuery("#map-canvas").removeClass();
-			jQuery("#map-canvas").addClass('map-320');
-		}
-	}
 
-}
-
-</script>
 <?php 
 get_footer();
